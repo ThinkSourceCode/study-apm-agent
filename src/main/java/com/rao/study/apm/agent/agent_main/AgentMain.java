@@ -11,7 +11,7 @@ public class AgentMain {
     public static void agentmain(String agentArgs, Instrumentation instrumentation) throws UnmodifiableClassException {
         System.out.println("在main方法执行后执行,agentargs="+agentArgs);
         System.out.println("agent main Done");
-        instrumentation.addTransformer(new MyTransformer(),true);
-        instrumentation.retransformClasses(TimeTest.class);
+        instrumentation.addTransformer(new Transformer(),true);
+        instrumentation.retransformClasses(TransClass.class);
     }
 }
