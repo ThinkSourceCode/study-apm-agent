@@ -4,11 +4,11 @@ import com.sun.tools.attach.VirtualMachine;
 import com.sun.tools.attach.VirtualMachineDescriptor;
 
 import java.util.List;
+import java.util.Properties;
 
 public class AttachTest extends Thread {
 
     private final List<VirtualMachineDescriptor> listBefore;
-
     private final String jar;
 
     AttachTest(String attachJar, List<VirtualMachineDescriptor> vms) {
@@ -46,20 +46,44 @@ public class AttachTest extends Thread {
     }
 
     public static void main(String[] args) throws Exception {
-//        new AttachThread("TestInstrument1.jar", VirtualMachine.list()).run();
+        test();
+    }
 
-//        VirtualMachine attach = VirtualMachine.attach("5741");
-//        System.out.println(attach.id());
+    public static void test() throws Exception {
         for (VirtualMachineDescriptor vmd : VirtualMachine.list()) {
             System.out.println(vmd);
-            if (vmd.displayName().contains("TestMainInJar")) {
+            if (vmd.displayName().contains("TestMainInJar")) {//找到指定的目标虚拟机
+                //通过provider或者进程id，连接上指定的虚拟机,并返回对应的子VirtualMachine实例
                 VirtualMachine vm = VirtualMachine.attach(vmd);
-                vm.loadAgent("D:\\all-work-space\\idea-workspace\\study-apm-agent\\target\\study-apm-agent-1.0-SNAPSHOT.jar");
+                //获取目标虚拟机的属性
+                Properties properties = vm.getAgentProperties();
+                Properties sysProperties = vm.getSystemProperties();
+                //载入java的agent,并调用agent的agentmain方法
+                vm.loadAgent("C:\\Users\\honey.rao\\Desktop\\study-apm-agent-1.0-SNAPSHOT.jar");
                 System.out.println("loaded");
+                //从虚拟机中断开
                 vm.detach();
                 System.out.println("detached");
                 break;
             }
         }
+    }
+
+    public static void testByPid() throws Exception {
+        VirtualMachine attach = VirtualMachine.attach("12944");
+        System.out.println(attach.id());
+        //获取目标虚拟机的属性
+        Properties properties = attach.getAgentProperties();
+        Properties sysProperties = attach.getSystemProperties();
+        //载入java的agent,并调用agent的agentmain方法
+        attach.loadAgent("C:\\Users\\honey.rao\\Desktop\\study-apm-agent-1.0-SNAPSHOT.jar");
+        System.out.println("loaded");
+        //从虚拟机中断开
+        attach.detach();
+        System.out.println("detached");
+    }
+
+    public static void testByThread() throws Exception {
+        new AttachTest("C:\\Users\\honey.rao\\Desktop\\study-apm-agent-1.0-SNAPSHOT.jar", VirtualMachine.list()).run();
     }
 }

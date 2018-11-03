@@ -1,9 +1,4 @@
-package com.rao.study.apm.agent.agent_main;
-
-import com.sun.tools.attach.VirtualMachine;
-import com.sun.tools.attach.VirtualMachineDescriptor;
-
-import java.util.List;
+package com.rao.study.apm.agent.agent_main.ob;
 
 public class TestMainInJar {
     public static void main(String[] args) throws InterruptedException {

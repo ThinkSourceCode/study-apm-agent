@@ -51,8 +51,9 @@
                                     <manifestEntries>
                                         <!--<Premain-Class>com.rao.study.apm.agent.pre_main.App</Premain-Class>-->
                                         <!--<Premain-Class>com.rao.study.apm.agent.pre_main.time.TimeAgent</Premain-Class>-->
-                                        <Can-Redefine-Classes>true</Can-Redefine-Classes>
+                                        <!--<Can-Redefine-Classes>true</Can-Redefine-Classes>-->
                                         <Can-Retransform-Classes>true</Can-Retransform-Classes>
+                                        <!--<Premain-Class>com.rao.study.apm.agent.pre_main.time.AgentMain</Premain-Class>-->
                                         <Agent-Class>com.rao.study.apm.agent.agent_main.AgentMain</Agent-Class>
                                         <!--<Main-Class>com.rao.study.apm.agent.agent_main.TestMainInJar</Main-Class>-->
                                     </manifestEntries>
