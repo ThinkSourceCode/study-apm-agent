@@ -50,7 +50,7 @@ public class TimePreMain {
          */
         new AgentBuilder
                 .Default()
-                .type(ElementMatchers.nameStartsWith("com.rao.study.apm.agent.pre_main.time.bytebuddy.demo")) // 指定需要拦截的类
+                .type(ElementMatchers.nameStartsWith("com.rao.study.apm.agent.pre_main.bytebuddy.demo")) // 指定需要拦截的类
                 .transform(transformer)//指定转换类,new Transformer.Compound(this.transformer, transformer),net.bytebuddy.agent.builder.AgentBuilder.Transformer.Compound.transform
                 .with(listener)
                 .installOn(inst);//将转换类对象添加到Instrumentation中
