@@ -17,11 +17,26 @@
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
+        <!-- 使用jdk自带的字节码技术 -->
         <dependency>
             <groupId>org.javassist</groupId>
             <artifactId>javassist</artifactId>
             <version>3.20.0-GA</version>
         </dependency>
+
+        <!-- 使用bytebuddy字节码技术 -->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-agent</artifactId>
+            <version>1.5.7</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -50,11 +65,11 @@
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <!--<Premain-Class>com.rao.study.apm.agent.pre_main.App</Premain-Class>-->
-                                        <!--<Premain-Class>com.rao.study.apm.agent.pre_main.time.TimeAgent</Premain-Class>-->
-                                        <!--<Can-Redefine-Classes>true</Can-Redefine-Classes>-->
+                                        <Premain-Class>com.rao.study.apm.agent.pre_main.jvm.JVMPreMain</Premain-Class>
+                                        <Can-Redefine-Classes>true</Can-Redefine-Classes>
                                         <Can-Retransform-Classes>true</Can-Retransform-Classes>
                                         <!--<Premain-Class>com.rao.study.apm.agent.pre_main.time.AgentMain</Premain-Class>-->
-                                        <Agent-Class>com.rao.study.apm.agent.agent_main.AgentMain</Agent-Class>
+                                        <!--<Agent-Class>com.rao.study.apm.agent.agent_main.AgentMain</Agent-Class>-->
                                         <!--<Main-Class>com.rao.study.apm.agent.agent_main.TestMainInJar</Main-Class>-->
                                     </manifestEntries>
                                 </transformer>

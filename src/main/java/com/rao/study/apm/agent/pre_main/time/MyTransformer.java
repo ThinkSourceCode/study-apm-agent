@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 采用我们自己实现的类实现ClassFileTransformer增强目标类
+ */
 public class MyTransformer implements ClassFileTransformer {
 
     final static String prefix = "\nlong startTime = System.currentTimeMillis();\n";

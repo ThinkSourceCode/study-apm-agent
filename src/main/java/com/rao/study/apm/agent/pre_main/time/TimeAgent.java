@@ -6,7 +6,7 @@ public class TimeAgent {
     public static void premain(String agentOps, Instrumentation inst) {
         System.out.println("=========premain方法执行========");
         System.out.println(agentOps);
-        // 添加Transformer
+        // 添加Transformer进行类的增强
         inst.addTransformer(new MyTransformer());
     }
 }
